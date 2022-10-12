@@ -1,7 +1,7 @@
 export interface AppointmentProps {
     costumer: string
-    startAt: Date
-    endAt: Date
+    startsAt: Date
+    endsAt: Date
 }
 
 export class Appointment {
@@ -11,18 +11,22 @@ export class Appointment {
         return this.pros.costumer
     }
 
-    get startAt() {
-        return this.pros.startAt
+    get startsAt() {
+        return this.pros.startsAt
     }
 
-    get endAt() {
-        return this.pros.endAt
+    get endsAt() {
+        return this.pros.endsAt
     }
 
     constructor(props: AppointmentProps) {
-        const { startAt, endAt } = props
+        const { startsAt, endsAt } = props
 
-        if (endAt <= startAt){
+        if( startsAt <= new Date()){
+            throw new Error('Invalid start Date')
+        }
+
+        if (endsAt <= startsAt){
             throw new Error('Invalid End Date')
         }
 
